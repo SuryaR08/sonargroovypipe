@@ -28,7 +28,7 @@ pipeline{
         -Dsonar.projectName=sonargroovy ^
         -Dsonar.sources=. ^
         -Dsonar.host.url=http://localhost:9000 ^
-        -Dsonar.token=sqp_b5d4456f8d766d8a680c3edef04d62128af807ee ^
+        -Dsonar.token=%SONAR_TOKEN% ^
         '''
       }
     }
