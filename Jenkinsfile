@@ -4,43 +4,72 @@ pipeline {
 
     stages {
 
-        stage('Build') {
+        stage('Breakfast') {
 
             steps {
 
-                echo 'I am Building!'
+                echo 'Having breakfast!'
 
             }
 
         }
 
-        stage('Test') {
+        stage('Workout') {
 
             steps {
 
-               echo 'I am Testing!'
+                echo 'Doing my workout!'
 
             }
 
         }
 
-        stage('Deploy') {
+        stage('Study') {
 
             steps {
 
-                echo 'I am Deploying!'
+                echo 'Studying and learning new things!'
+
+            }
+
+        }
+
+        stage('Family Time') {
+
+            steps {
+
+                echo 'Spending quality time with family!'
+
+            }
+
+        }
+
+        stage('Play (Volleyball)') {
+
+            steps {
+
+                echo 'Playing volleyball and having fun!'
 
             }
 
         }
 
     }
-  Post{
-    success{
-      echo 'Build Sucess!'
+
+    post {
+
+        success {
+
+            echo 'My day went well!'
+
+        }
+
+        failure {
+
+            echo 'Something went wrong in my day!'
+
+        }
+
     }
-    failure{
-      echo 'Build Failed!'
-    }
-  }
+
 }
