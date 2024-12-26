@@ -1,75 +1,27 @@
-pipeline {
-
-    agent any
-
-    stages {
-
-        stage('Breakfast') {
-
-            steps {
-
-                echo 'Having breakfast!'
-
-            }
-
-        }
-
-        stage('Workout') {
-
-            steps {
-
-                echo 'Doing my workout!'
-
-            }
-
-        }
-
-        stage('Study') {
-
-            steps {
-
-                echo 'Studying and learning new things!'
-
-            }
-
-        }
-
-        stage('Family Time') {
-
-            steps {
-
-                echo 'Spending quality time with family!'
-
-            }
-
-        }
-
-        stage('Play') {
-
-            steps {
-
-                echo 'Playing volleyball and having fun!'
-
-            }
-
-        }
-
+node {
+    stage('Breakfast') {
+        echo 'Having breakfast!'
     }
 
-    post {
-
-        success {
-
-            echo 'My day went well!'
-
-        }
-
-        failure {
-
-            echo 'Something went wrong in my day!'
-
-        }
-
+    stage('Workout') {
+        echo 'Doing my workout!'
     }
 
+    stage('Study') {
+        echo 'Studying and learning new things!'
+    }
+
+    stage('Family Time') {
+        echo 'Spending quality time with family!'
+    }
+
+    stage('Play') {
+        echo 'Playing volleyball and having fun!'
+    }
+    
+    if (currentBuild.result == 'SUCCESS') {
+        echo 'My day went well!'
+    } else {
+        echo 'Something went wrong in my day!'
+    }
 }
