@@ -44,7 +44,7 @@ pipeline {
 
         }
 
-        stage('Play (Volleyball)') {
+        stage('Play') {
 
             steps {
 
