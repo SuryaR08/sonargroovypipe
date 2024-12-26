@@ -1,27 +1,43 @@
-node {
-    stage('Breakfast') {
-        echo 'Having breakfast!'
+pipeline{
+  agent any
+  environment{
+    PYTHON_PATH='C:\Program Files\Python313;C:\Program Files\Python313\Scripts'
+  }
+  stages{
+    stage('Checkout'){
+      steps{
+        checkout scm
+      }
     }
-
-    stage('Workout') {
-        echo 'Doing my workout!'
+    stage('Build'){
+      steps{
+        bat '''
+        set PATH=%PYTHON_PATH%;%PATH%
+        pip install -r requirements.txt
+        '''
+      }
     }
-
-    stage('Study') {
-        echo 'Studying and learning new things!'
+    stage('SonarAnalysis'){
+      environment{
+        SONAR_TOKEN=credentials('sonarqube-token')
+      }
+      steps{
+        bat '''
+        set PATH=%PYTHON_PATH%;%PATH%
+        sonar-scanner -Dsonar.projectKey=sonargroovy ^
+        -Dsonar.sources=. ^
+        -Dsonar.host.url=http://localhost:9000 ^
+        -Dsonar.token=%SONAR_TOKEN% ^
+        '''
+      }
     }
-
-    stage('Family Time') {
-        echo 'Spending quality time with family!'
+  }
+  post{
+    success{
+      echo 'Build Succeeded!'
     }
-
-    stage('Play') {
-        echo 'Playing volleyball and having fun!'
+    failure{
+      echo 'Build Failed'
     }
-    
-    if (currentBuild.currentResult=='SUCCESS') {
-        echo 'My day went well!'
-    } else {
-        echo 'Something went wrong in my day!'
-    }
+  }
 }
