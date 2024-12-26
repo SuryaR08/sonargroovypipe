@@ -19,7 +19,7 @@ node {
         echo 'Playing volleyball and having fun!'
     }
     
-    if (currentBuild.result=="SUCCESS") {
+    if (currentBuild.result=='SUCCESS') {
         echo 'My day went well!'
     } else {
         echo 'Something went wrong in my day!'
